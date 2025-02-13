@@ -8,6 +8,7 @@ import java.sql.Statement;
 
 public class RegistrationDAO {
     
+    private static final String Query_Create = "INSERT INTO registration (studentid, termid, crn) VALUES (?,?,?)" ;
     private final DAOFactory daoFactory;
     
     RegistrationDAO(DAOFactory daoFactory) {
@@ -15,7 +16,7 @@ public class RegistrationDAO {
     }
     
     public boolean create(int studentid, int termid, int crn) {
-        
+       
         boolean result = false;
         
         PreparedStatement ps = null;
@@ -29,6 +30,13 @@ public class RegistrationDAO {
                 
                 // INSERT YOUR CODE HERE
                 
+                ps = conn.prepareStatement(Query_Create);
+                
+                ps.setInt(1, studentid);
+                ps.setInt(2, termid );
+                ps.setInt(3, crn);
+                
+                result = ps.execute();
             }
             
         }
