@@ -20,7 +20,7 @@ public class SectionDAO {
     public String find(int termid, String subjectid, String num) {
         
         
-        String result = "[]";
+        String result = "";
         
         PreparedStatement ps = null;
         ResultSet rs = null;

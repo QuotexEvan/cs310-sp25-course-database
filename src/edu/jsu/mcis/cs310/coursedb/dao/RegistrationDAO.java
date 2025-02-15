@@ -159,7 +159,7 @@ public class RegistrationDAO {
 
     public String list(int studentid, int termid) {
         
-        String result = "[]";
+        String result = "";
         
         PreparedStatement ps = null;
         ResultSet rs = null;
