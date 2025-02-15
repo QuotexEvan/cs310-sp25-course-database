@@ -39,7 +39,7 @@ public class SectionDAO {
                 //Creating the query as a PreparedStatement
                 ps = conn.prepareStatement(QUERY_FIND);
                 
-                // Parametrizing the PreparedStatement
+                // Providing the arguments for the PreparedStatement
                 ps.setString(1, String.valueOf(termid));
                 ps.setString(2, subjectid);
                 ps.setString(3, num);

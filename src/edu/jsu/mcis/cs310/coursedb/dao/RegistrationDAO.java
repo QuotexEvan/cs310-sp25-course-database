@@ -8,7 +8,9 @@ import java.sql.Statement;
 
 public class RegistrationDAO {
     
+    // Writing queries to pass into prepareStatement
     private static final String Query_Create = "INSERT INTO registration (studentid, termid, crn) VALUES (?,?,?)" ;
+    
     private final DAOFactory daoFactory;
     
     RegistrationDAO(DAOFactory daoFactory) {
@@ -30,13 +32,20 @@ public class RegistrationDAO {
                 
                 // INSERT YOUR CODE HERE
                 
+                //Creating the query as a PreparedStatement
                 ps = conn.prepareStatement(Query_Create);
                 
-                ps.setInt(1, studentid);
-                ps.setInt(2, termid );
-                ps.setInt(3, crn);
+                // Providing the arguments for the PreparedStatement
+                ps.setString(1, String.valueOf(studentid));
+                ps.setString(2, String.valueOf(termid));
+                ps.setString(3, String.valueOf(crn));
                 
-                result = ps.execute();
+                // Executing the query and executeUpdate() returns the number of
+                // row affected by the query so storing it in an int variable
+                int rowsAffected = ps.executeUpdate();
+                
+                // if one or more rows were affected, then result = true
+                result = rowsAffected > 0;
             }
             
         }
