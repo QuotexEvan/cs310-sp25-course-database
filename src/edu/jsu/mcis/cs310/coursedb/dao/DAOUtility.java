@@ -53,7 +53,7 @@ public class DAOUtility {
             e.printStackTrace();
         }
         
-        return Jsoner.serialize(records);
+        return records.toString();
         
     }
     

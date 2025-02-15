@@ -2,6 +2,7 @@ package edu.jsu.mcis.cs310.coursedb.dao;
 
 import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
+import static edu.jsu.mcis.cs310.coursedb.dao.DAOUtility.getResultSetAsJson;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -159,7 +160,7 @@ public class RegistrationDAO {
 
     public String list(int studentid, int termid) {
         
-        String result = "";
+        String result = "[]";
         
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -172,9 +173,6 @@ public class RegistrationDAO {
             if (conn.isValid(0)) {
                 
                 // INSERT YOUR CODE HERE
-                
-                // Declaring a JsonArray to store the query results
-                JsonArray resultArray = new JsonArray();
                 
                 //Creating the query as a PreparedStatement
                 ps = conn.prepareStatement(Query_List);
@@ -191,23 +189,12 @@ public class RegistrationDAO {
                     
                     // Getting result set and storing it in the ResultSet variable
                     rs = ps.getResultSet();
-                    rs.next();
-                    
-                    // Creating an JsonObject to store the termid, subjectid, num
-                    // and crn for each section in its own row  
-                    JsonObject row = new JsonObject();
-                    
-                    // Adding the values from the ResultSet into the row JsonObject
-                    row.put("subjectid", rs.getString("subjectid"));
-                    row.put("termid", rs.getInt("termid"));
-                    row.put("crn", rs.getInt("crn"));
-                    
-                    // Adding each row to the JsonArray
-                    resultArray.add(row);
+
                 }
                
-                // Converting the JsonArray to String
-                result = resultArray.toString();
+                // Using the getResultSetAsJson from DAOUtility
+                // and passing the ResultSet as the argument
+                result = getResultSetAsJson(rs);
                 
             }
             
@@ -227,3 +214,4 @@ public class RegistrationDAO {
     }
     
 }
+
