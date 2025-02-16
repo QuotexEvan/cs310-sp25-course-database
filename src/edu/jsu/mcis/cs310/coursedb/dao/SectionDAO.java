@@ -47,7 +47,7 @@ public class SectionDAO {
                 
                 // If query has results, then retrieving the data 
                 if (hasResults){
-                    
+             
                     // Getting result set and storing it in the ResultSet variable
                     rs = ps.getResultSet();
                  

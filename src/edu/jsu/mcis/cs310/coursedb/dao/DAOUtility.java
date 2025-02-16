@@ -11,6 +11,7 @@ public class DAOUtility {
     public static String getResultSetAsJson(ResultSet rs) {
         
         JsonArray records = new JsonArray();
+        
         ResultSetMetaData rsmd = null;
         
         try {
@@ -53,6 +54,7 @@ public class DAOUtility {
             e.printStackTrace();
         }
         
+        // Jsoner.serialize did not work, so using toString method
         return records.toString();
         
     }
